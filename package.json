@@ -14,5 +14,12 @@
     "@types/node": "^20.11.10",
     "@types/puppeteer": "^7.0.4",
     "puppeteer": "^21.10.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dcoder-x/node-HTML-transformer.git"
   }
 }
