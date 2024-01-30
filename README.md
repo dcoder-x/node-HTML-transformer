@@ -25,10 +25,10 @@ npm install puppeteer
 ## Usage
 
 ```typescript
-import ConvertHTML from './path/to/ConvertHTML';
+import HtmlTransformer from 'node-html-transformers';
 
 // Create an instance of the ConvertHTML class
-const converter = new ConvertHTML('path/to/html/file.html', 'utf-8', { variable1: 'value1', variable2: 'value2' });
+const converter = new HtmlTransformer('path/to/html/file.html', 'utf-8', { variable1: 'value1', variable2: 'value2' });
 
 // Convert HTML to PDF
 const pdfContent = await converter.toPDF('output.pdf');
@@ -46,6 +46,7 @@ console.log('Base64-encoded Image Content:', imageContent);
 ### toString
 
 Converts the HTML content to a string with replaced placeholders.
+returns a string
 
 ```typescript
   const htmlString = await converter.toString();
@@ -54,6 +55,7 @@ Converts the HTML content to a string with replaced placeholders.
 
 ### toPDF
 Converts the HTML content to a PDF file.
+-- returns a base64 encoded PDF string
 
 ```typescript
 const pdfContent = await converter.toPDF('output.pdf');
@@ -65,6 +67,7 @@ console.log('Base64-encoded PDF Content:', pdfContent);
 
 
 Converts the HTML content to an image.
+-- returns a base64 encoded Image string
 
 ```typescript
 const imageContent = await converter.toImage('output.png');
@@ -84,7 +87,7 @@ Feel free to contribute by opening issues or submitting pull requests. Contribut
 ## License
 This project is licensed under the MIT License.
 
-### made with Love by Ayomikun Faluyi
+#### made with 💘 by Ayomikun Faluyi
 
 
 
