@@ -1,6 +1,8 @@
-import * as puppeteer from "puppeteer";
-import * as fs from 'fs/promises';
-import * as path from 'path';
+
+
+const fs = require("fs/promises")
+const puppeteer = require("puppeteer")
+const path = require("path")
 
 /**
  * Converts HTML content to an image using puppeteer.
@@ -8,24 +10,28 @@ import * as path from 'path';
  * @param {string} outputPath - The path where the image will be saved.
  * @returns {Promise<string>} - A Promise that resolves with the base64-encoded image content.
  */
-async function convertHTMLToImage(htmlContent: string, outputPath: string): Promise<string> {
-  const browser = await puppeteer.launch();
+async function convertHTMLToImage(htmlContent: string): Promise<string> {
+  const browser = await puppeteer.launch({headless:true});
   const page = await browser.newPage();
 
   try {
     // Set content to the HTML
     await page.setContent(htmlContent);
 
-    // Capture a screenshot
-    await page.screenshot({ path: outputPath });
+    // Capture a screenshot directly into a buffer
+    const screenshotBuffer = await page.screenshot();
 
-    console.log(`Image saved to ${outputPath}`);
+    // Save the buffer content as base64
+    const base64Image = screenshotBuffer.toString('base64');
 
-    return await fs.readFile(outputPath, 'base64');
+    console.log(`Image captured and converted to base64`);
+
+    return base64Image;
   } finally {
     await browser.close();
   }
 }
+
 
 /**
  * Class representing HTML conversion operations.
@@ -34,17 +40,17 @@ class ConvertHTML {
   /**
    * The file path of the HTML file to be converted.
    */
-  filePath: string;
+  private filePath: string;
 
   /**
    * The encoding of the HTML file. Defaults to 'utf-8'.
    */
-  encoding: string;
+  private encoding: string;
 
   /**
    * An object containing key-value pairs for replacing placeholders in the HTML content.
    */
-  content: object;
+  private content: object;
 
   /**
    * Constructs a new instance of the ConvertHTML class.
@@ -69,14 +75,14 @@ class ConvertHTML {
 
       // Read the HTML file content
       let htmlContent: string = await fs.readFile(absolutePath,this.encoding as BufferEncoding );
-
+      let newHtmlConent:string;
 
       if (Object.keys(this.content).length > 0) {
         Object.entries(this.content).forEach(([key, value]) => {
-          htmlContent = htmlContent.replace(`{{${key}}}`, `${value}`);
+          newHtmlConent = htmlContent.replace(`{{${key}}}`, `${value}`);
         });
 
-        return htmlContent;
+        return newHtmlConent;
       }
 
       return htmlContent;
@@ -102,12 +108,12 @@ class ConvertHTML {
         await page.setContent(htmlContent);
 
         // Generate PDF
-        await page.pdf({ path: outputPath, format: 'A4' });
+        const  pdfBuffer = await page.pdf({ format: 'A4' });
 
         console.log(`PDF saved to ${outputPath}`);
 
         // Read the PDF file and return the base64-encoded content directly
-        const encodedPDF = await fs.readFile(outputPath, 'base64');
+        const encodedPDF = pdfBuffer.toString("base64");
         return encodedPDF;
       } finally {
         await browser.close();
@@ -123,10 +129,10 @@ class ConvertHTML {
    * @param {string} outputPath - The path where the image will be saved.
    * @returns {Promise<string>} - A Promise that resolves with the base64-encoded image content.
    */
-  toImage = async (outputPath: string): Promise<string> => {
+  toImage = async (): Promise<string> => {
     try {
       const htmlContent = await this.toString();
-      return await convertHTMLToImage(htmlContent, outputPath);
+      return await convertHTMLToImage(htmlContent);
     } catch (error) {
       console.error('Error converting HTML to image:', error.message);
       throw error;
@@ -134,4 +140,4 @@ class ConvertHTML {
   };
 }
 
-export default ConvertHTML;
+module.exports= ConvertHTML;

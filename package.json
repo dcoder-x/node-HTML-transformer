@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --watch"
   },
-  "author": "",
+  "author": "Ayomikun Faluyi",
+  "keywords": ["node functions", "helper", "utils", "html to image", "html-transformer"],
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.11.10",
