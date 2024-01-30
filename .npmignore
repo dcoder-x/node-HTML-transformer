@@ -1,0 +1,71 @@
+# Development and build files
+__tests__
+docs/
+src/
+*.ts
+*.tsx
+*.d.ts
+tsconfig.json
+tsconfig.build.json
+
+# Git-related files
+.git
+.gitignore
+
+# Node.js and npm-related files
+node_modules/
+package-lock.json
+yarn.lock
+
+# IDE and editor-related files
+.vscode/
+.idea/
+*.sublime*
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+*.user
+*.suo
+*.cache
+*.project
+*.class
+*.log
+*.tmp
+*.temp
+
+# Various configuration files
+.travis.yml
+appveyor.yml
+*.config.js
+
+# Documentation
+doc/
+docs/
+
+# Example files
+example/
+examples/
+
+# Editor config files
+.editorconfig
+
+# Build system files
+.npmignore
+.npmrc
+npm-debug.log*
+
+# CI files
+.circleci/
+.github/
+
+# Test files
+test/
+tests/
+
+# Other unnecessary files
+CHANGELOG*
+CONTRIBUTING*
+LICENSE*
+README*
