@@ -1,0 +1,17 @@
+{
+  "name": "node-html-transformer",
+  "version": "1.0.0",
+  "description": "A helper function that lets you transform html to string, pdf and image. This tool lets you dynamically insert content into any HTML file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.10",
+    "@types/puppeteer": "^7.0.4",
+    "puppeteer": "^21.10.0"
+  }
+}
