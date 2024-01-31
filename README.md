@@ -40,6 +40,46 @@ console.log('Base64-encoded Image Content:', imageContent);
 
 ```
 
+## Templating with HTML
+
+You can create placeholders in HTML documents and then Dynamically pass in data.
+To do this you should surround the placeholder variable with double curly braces e.g `{{placeholderVariable}}`. 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Document</title>
+</head>
+<body>
+    <h1>
+        Sample template in html
+    </h1>
+    <p>
+        My name is {{name}}, I am {{age}} years old.
+    </p>
+<img src={{imageUrl}} />
+</body>
+</html>
+```
+
+
+
+Then, pass the same variable name as a field to the content `{placeholderVariable:value}` argument when creating an instance of the HtmlTransformer class e.g 
+
+```typescript
+import HtmlTransformer from 'node-html-transformers';
+
+// Create an instance of the ConvertHTML class
+const converter = new HtmlTransformer('path/to/html/file.html', 'utf-8', { name: 'Ayomikun', age: '20' });
+
+
+```
+
+
+
 ## Class Methods
 
 
