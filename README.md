@@ -19,7 +19,7 @@ The `Node HTML transformers` class is designed to facilitate the conversion of H
 Make sure you have Node.js and npm installed. Install the required dependencies using the following command:
 
 ```bash
-npm install puppeteer
+npm install node-html-transformers
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ npm install puppeteer
 ```typescript
 import HtmlTransformer from 'node-html-transformers';
 
-// Create an instance of the ConvertHTML class
+// Create an instance of the HTMLTransformer class
 const converter = new HtmlTransformer('path/to/html/file.html', 'utf-8', { variable1: 'value1', variable2: 'value2' });
 
 // Convert HTML to PDF
@@ -72,7 +72,7 @@ Then, pass the same variable name as a field to the content `{placeholderVariabl
 ```typescript
 import HtmlTransformer from 'node-html-transformers';
 
-// Create an instance of the ConvertHTML class
+// Create an instance of the HTMLTransformer class
 const converter = new HtmlTransformer('path/to/html/file.html', 'utf-8', { name: 'Ayomikun', age: '20' });
 
 

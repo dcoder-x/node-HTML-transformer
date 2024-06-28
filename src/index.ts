@@ -68,27 +68,24 @@ class ConvertHTML {
    * @returns {Promise<string>} - A Promise that resolves with the converted HTML content.
    */
   toString = async (): Promise<string> => {
-    try {
-      // Resolve the absolute path to the HTML file
-      const absolutePath: string = path.resolve(this.filePath);
+  try {
+    // Resolve the absolute path to the HTML file
+    const absolutePath: string = path.resolve(this.filePath);
 
-      // Read the HTML file content
-      let htmlContent: string = await fs.readFile(absolutePath,this.encoding as BufferEncoding );
-      let newHtmlConent:string;
+    // Read the HTML file content
+    let htmlContent: string = await fs.readFile(absolutePath, this.encoding);
 
-      if (Object.keys(this.content).length > 0) {
-        Object.entries(this.content).forEach(([key, value]) => {
-          newHtmlConent = htmlContent.replace(`{{${key}}}`, `${value}`);
-        });
-
-        return newHtmlConent;
-      }
-
-      return htmlContent;
-    } catch (error) {
-      console.error('Error reading HTML file:', error.message);
-      throw error;
+    if (Object.keys(this.content).length > 0) {
+      Object.entries(this.content).forEach(([key, value]) => {
+        htmlContent = htmlContent.replace(new RegExp(`{{${key}}}`, 'g'), `${value}`);
+      });
     }
+
+    return htmlContent;
+  } catch (error) {
+    console.error('Error reading HTML file:', error.message);
+    throw error;
+  }
   };
 
   /**
