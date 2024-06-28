@@ -1,7 +1,7 @@
 {
   "name": "node-html-transformers",
-  "version": "1.0.0",
-  "description": "A helper function that lets you transform html to string, pdf and image. This tool lets you dynamically insert content into any HTML file",
+  "version": "1.0.3",
+  "description": "A helper function that lets you transform html to string, pdf and image. This tool lets you dynamically insert content into any HTML file.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -7,10 +7,9 @@ const path = require("path")
 /**
  * Converts HTML content to an image using puppeteer.
  * @param {string} htmlContent - The HTML content to be converted to an image.
- * @param {string} outputPath - The path where the image will be saved.
  * @returns {Promise<string>} - A Promise that resolves with the base64-encoded image content.
  */
-async function convertHTMLToImage(htmlContent: string): Promise<string> {
+async function convertHTMLToImage(htmlContent: string,): Promise<string> {
   const browser = await puppeteer.launch({headless:true});
   const page = await browser.newPage();
 
@@ -126,7 +125,6 @@ class ConvertHTML {
 
   /**
    * Converts the HTML content to an image.
-   * @param {string} outputPath - The path where the image will be saved.
    * @returns {Promise<string>} - A Promise that resolves with the base64-encoded image content.
    */
   toImage = async (): Promise<string> => {
